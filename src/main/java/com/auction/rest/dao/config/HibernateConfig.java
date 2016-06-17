@@ -8,9 +8,9 @@ import org.hibernate.cfg.Configuration;
 import java.util.Properties;
 
 public class HibernateConfig {
-    private static SessionFactory sessionFactory;
+    private static SessionFactory sessionFactory = buildSessionFactory();
 
-    public static SessionFactory getSessionFactory() {
+    public static SessionFactory buildSessionFactory() {
 
         final Configuration configuration = new Configuration().configure();
         Environment env = Environment.getInstance();
@@ -24,6 +24,10 @@ public class HibernateConfig {
             configuration.addProperties(properties);
             sessionFactory = configuration.buildSessionFactory();
         }
+        return sessionFactory;
+    }
+
+    public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 }
