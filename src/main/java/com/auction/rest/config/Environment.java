@@ -17,6 +17,7 @@ public class Environment {
     private String url;
     private String username;
     private String password;
+    private String webSocketUrl;
     private static Environment environment;
 
     private Environment() {}
@@ -64,6 +65,15 @@ public class Environment {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @JsonProperty("websocket.url")
+    public String getWebSocketUrl() {
+        return webSocketUrl;
+    }
+
+    public void setWebSocketUrl(String webSocketUrl) {
+        this.webSocketUrl = webSocketUrl;
     }
 
     public static Environment getInstance() {

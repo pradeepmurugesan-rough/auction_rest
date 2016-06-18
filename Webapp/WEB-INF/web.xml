@@ -38,12 +38,12 @@
         <servlet-name>Jersey Web Application</servlet-name>
         <url-pattern>/resources/*</url-pattern>
     </servlet-mapping>
-    <!--<filter>
-        <filter-name>ApiOriginFilter</filter-name>
-        <filter-class>com.trimble.paas.apicloud.utils.ApiOriginFilter</filter-class>
+    <filter>
+        <filter-name>OriginFilter</filter-name>
+        <filter-class>com.auction.rest.config.OriginFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>ApiOriginFilter</filter-name>
+        <filter-name>OriginFilter</filter-name>
         <url-pattern>/resources/*</url-pattern>
-    </filter-mapping>-->
+    </filter-mapping>
 </web-app>
