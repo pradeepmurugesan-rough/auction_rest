@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "item")
@@ -21,10 +22,13 @@ public class Item   {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = null;
     @Column(name = "name")
+    @NotNull
     private String name = null;
     @Column(name = "description")
+    @NotNull
     private String description = null;
     @Column(name = "startingPrice")
+    @NotNull
     private Double startingPrice = null;
 
 
@@ -50,7 +54,7 @@ public class Item   {
     }
 
 
-    @ApiModelProperty(value = "name of the item")
+    @ApiModelProperty(value = "name of the item", required = true)
     @JsonProperty("name")
     public String getName() {
         return name;
@@ -67,7 +71,7 @@ public class Item   {
     }
 
 
-    @ApiModelProperty(value = "description about the item")
+    @ApiModelProperty(value = "description about the item", required = true)
     @JsonProperty("description")
     public String getDescription() {
         return description;
@@ -84,7 +88,7 @@ public class Item   {
     }
 
 
-    @ApiModelProperty(value = "starting price ofthe article")
+    @ApiModelProperty(value = "starting price ofthe article", required = true)
     @JsonProperty("startingPrice")
     public Double getStartingPrice() {
         return startingPrice;

@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "user")
@@ -21,8 +22,10 @@ public class User   {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = null;
     @Column(name = "name")
+    @NotNull
     private String name = null;
     @Column(name = "location")
+    @NotNull
     private String location = null;
 
     public User id(Long id) {
@@ -48,7 +51,7 @@ public class User   {
     }
 
 
-    @ApiModelProperty(value = "name of the item")
+    @ApiModelProperty(value = "name of the item", required = true)
     @JsonProperty("name")
     public String getName() {
         return name;
@@ -64,8 +67,8 @@ public class User   {
     }
 
 
-    @ApiModelProperty(value = "location of the user")
-    @JsonProperty("place")
+    @ApiModelProperty(value = "location of the user", required = true)
+    @JsonProperty("location")
     public String getLocation() {
         return location;
     }

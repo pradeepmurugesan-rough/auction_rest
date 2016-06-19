@@ -24,4 +24,9 @@ public class AuctionDao extends AbstractDao{
         query.setParameter(ID, id);
         return (Auction) query.uniqueResult();
     }
+
+    public Auction updateAuction(Auction auction) {
+        getCurrentSession().update(auction);
+        return auction;
+    }
 }

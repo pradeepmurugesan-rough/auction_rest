@@ -1,5 +1,6 @@
 package com.auction.rest.config;
 
+import com.auction.rest.exceptionmappers.ConstraintViolationMapper;
 import com.auction.rest.resources.AuctionResource;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -10,6 +11,7 @@ public class AppConfig extends ResourceConfig {
         register(com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider.class);
         register(MultiPartFeature.class);
         packages(AuctionResource.class.getPackage().getName());
+        packages(ConstraintViolationMapper.class.getPackage().getName());
         property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
         property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true);
     }

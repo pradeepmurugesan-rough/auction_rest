@@ -10,6 +10,7 @@ public class UiConfigImpl {
         Environment environment = Environment.getInstance();
         UiConfig config = new UiConfig();
         config.setWebSocketUrl(environment.getWebSocketUrl());
+        config.setRestApisUrl(environment.getRestApisUrl());
         return config;
     }
 }

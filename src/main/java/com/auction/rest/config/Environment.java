@@ -18,6 +18,7 @@ public class Environment {
     private String username;
     private String password;
     private String webSocketUrl;
+    private String restApisUrl;
     private static Environment environment;
 
     private Environment() {}
@@ -74,6 +75,15 @@ public class Environment {
 
     public void setWebSocketUrl(String webSocketUrl) {
         this.webSocketUrl = webSocketUrl;
+    }
+
+    @JsonProperty("restapis.url")
+    public String getRestApisUrl() {
+        return restApisUrl;
+    }
+
+    public void setRestApisUrl(String restApisUrl) {
+        this.restApisUrl = restApisUrl;
     }
 
     public static Environment getInstance() {

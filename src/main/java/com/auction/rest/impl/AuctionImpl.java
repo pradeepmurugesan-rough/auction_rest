@@ -21,4 +21,9 @@ public class AuctionImpl {
         Auction auction = this.auctionDaoService.getAuction(id);
         return auction;
     }
+
+    public Auction makeAuctionLive(Long id) {
+        Auction auction = this.auctionDaoService.makeAuctionLive(id);
+        return auction;
+    }
 }

@@ -6,6 +6,7 @@ import com.auction.rest.dao.utils.DaoUtils;
 import com.auction.rest.impl.AuctionImpl;
 import com.auction.rest.model.Auction;
 import com.auction.rest.model.Bid;
+import com.auction.rest.vaidators.CanGoLive;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -15,6 +16,7 @@ import io.swagger.annotations.ApiResponses;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -55,6 +57,22 @@ public class AuctionResource  {
         AuctionDaoService auctionDaoService = DaoUtils.getAuctionService();
         AuctionImpl auctionImpl = new AuctionImpl(auctionDaoService);
         return Response.ok().entity(auctionImpl.getAuction(id)).build();
+    }
+
+    @PUT
+    @Path("/{id}/golive")
+
+    @Produces({ "application/json" })
+    @ApiOperation(value = "Makes the Auction go Live", notes = "", response = Auction.class, tags={  })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "went live ", response = Auction.class),
+            @ApiResponse(code = 200, message = "Unexpected error", response = Auction.class) })
+    public Response goLive(
+            @ApiParam(value = "id of the auction to be made live",required=true) @PathParam("id") @CanGoLive Long id)
+            throws NotFoundException {
+        AuctionDaoService auctionDaoService = DaoUtils.getAuctionService();
+        AuctionImpl auctionImpl = new AuctionImpl(auctionDaoService);
+        return Response.ok().entity(auctionImpl.makeAuctionLive(id)).build();
     }
 
     @GET

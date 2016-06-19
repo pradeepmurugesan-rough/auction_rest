@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "bid")
@@ -21,11 +23,14 @@ public class Bid   {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = null;
     @Column(name = "auctionId")
-    private Long auctionId = null;
+    @NotNull private Long auctionId = null;
     @Column(name = "userId")
-    private Long userId = null;
+    @NotNull private Long userId = null;
     @Column(name = "price")
-    private Double price = null;
+    @NotNull private Double price = null;
+
+    @Transient
+    private User user;
 
     public Bid id(Long id) {
         this.id = id;
@@ -50,7 +55,7 @@ public class Bid   {
     }
 
 
-    @ApiModelProperty(value = "bid to which the auction belongs to")
+    @ApiModelProperty(required = true, value = "bid to which the auction belongs to")
     @JsonProperty("auctionId")
     public Long getAuctionId() {
         return auctionId;
@@ -67,7 +72,7 @@ public class Bid   {
     }
 
 
-    @ApiModelProperty(value = "user associated with the bid")
+    @ApiModelProperty(required = true, value = "user associated with the bid")
     @JsonProperty("userId")
     public Long getUserId() {
         return userId;
@@ -78,7 +83,7 @@ public class Bid   {
     }
 
 
-    @ApiModelProperty(value = "user associated with the bid")
+    @ApiModelProperty(required = true, value = "price associated with the bid")
     @JsonProperty("price")
     public Double getPrice() {
         return price;
@@ -86,6 +91,17 @@ public class Bid   {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    @ApiModelProperty(value = "user associated with the bid")
+    @JsonProperty("user")
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
 

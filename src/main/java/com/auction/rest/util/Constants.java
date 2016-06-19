@@ -12,4 +12,6 @@ public class Constants {
 
     public static final String ENV_FILE = "environments.json";
     public static final String ENVIRONMENT_NAME = "environmentName";
+    public static final String VALIDATION_ERROR_MESSAGE = "Improper input";
+    public static final String WS_BID_UPDATED = "bidUpdated";
 }

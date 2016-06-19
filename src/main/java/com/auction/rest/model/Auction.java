@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "auction")
@@ -24,13 +26,18 @@ public class Auction   {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = null;
     @Column(name = "itemId")
+    @NotNull
     private Long itemId = null;
     @Column(name = "channel")
     private String channel = null;
     @Column(name = "isLive")
+    @NotNull
     private Boolean isLive = null;
     @Column(name = "highestBid")
     private Double highestBid = null;
+
+    @Transient
+    private Item item;
 
     public Auction id(Long id) {
         this.id = id;
@@ -55,7 +62,7 @@ public class Auction   {
     }
 
 
-    @ApiModelProperty(value = "Item reference")
+    @ApiModelProperty(value = "Item reference", required = true)
     @JsonProperty("itemId")
     public Long getItemId() {
         return itemId;
@@ -87,7 +94,7 @@ public class Auction   {
     }
 
 
-    @ApiModelProperty(value = "whether the auction is live now")
+    @ApiModelProperty(value = "whether the auction is live now", required = true)
     @JsonProperty("isLive")
     public Boolean getIsLive() {
         return isLive;
@@ -112,6 +119,16 @@ public class Auction   {
 
     public void setHighestBid(Double highestBid) {
         this.highestBid = highestBid;
+    }
+
+    @ApiModelProperty(value = "item of the auction")
+    @JsonProperty("item")
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 }
 

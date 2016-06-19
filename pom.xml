@@ -325,6 +325,11 @@
             <artifactId>postgresql</artifactId>
             <version>9.3-1102-jdbc41</version>
         </dependency>
+        <dependency>
+            <groupId>io.socket</groupId>
+            <artifactId>socket.io-client</artifactId>
+            <version>0.7.0</version>
+        </dependency>
     </dependencies>
     <reporting>
         <plugins>

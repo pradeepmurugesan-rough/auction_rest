@@ -4,12 +4,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @ApiModel(description = "Error Object")
 public class Error   {
 
     private Integer code = null;
     private String message = null;
     private String fields = null;
+    private List<ErrorListItem> details = new ArrayList<ErrorListItem>() ;
 
     public Error code(Integer code) {
         this.code = code;
@@ -61,5 +65,14 @@ public class Error   {
         this.fields = fields;
     }
 
+    @ApiModelProperty(value = "")
+    @JsonProperty("details")
+    public List<ErrorListItem> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<ErrorListItem> details) {
+        this.details = details;
+    }
 }
 

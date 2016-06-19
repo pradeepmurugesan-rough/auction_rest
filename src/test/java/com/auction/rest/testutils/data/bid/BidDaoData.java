@@ -9,6 +9,8 @@ public class BidDaoData {
     public static Bid getBid() {
         Bid bid = new Bid();
         bid.setPrice(1.2);
+        bid.setUserId((long)1);
+        bid.setAuctionId((long)1);
         return bid;
     }
 

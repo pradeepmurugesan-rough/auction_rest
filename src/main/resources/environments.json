@@ -1,24 +1,26 @@
 {
     "local" : {
-        /*"hibernate.dialect": "org.hibernate.dialect.MySQLDialect",
+        "hibernate.dialect": "org.hibernate.dialect.MySQLDialect",
         "hibernate.connection.driver_class": "com.mysql.jdbc.Driver",
         "hibernate.connection.url": "jdbc:mysql://localhost/auction",
         "hibernate.connection.username": "root",
-        "hibernate.connection.password": "root"*/
-        "hibernate.dialect": "org.hibernate.dialect.PostgreSQLDialect",
+        "hibernate.connection.password": "root",
+        /*"hibernate.dialect": "org.hibernate.dialect.PostgreSQLDialect",
         "hibernate.connection.driver_class": "org.postgresql.Driver",
         "hibernate.connection.url": "jdbc:postgresql://localhost/auction",
         "hibernate.connection.username": "postgres",
-        "hibernate.connection.password": "postgres",
-        "websocket.url": "http://localhost:5000"
+        "hibernate.connection.password": "postgres",*/
+        "websocket.url": "http://localhost:5000",
+        "restapis.url": "http://localhost:8080/auction_rest/resources"
     },
     "prod": {
         "hibernate.dialect": "org.hibernate.dialect.PostgreSQLDialect",
         "hibernate.connection.driver_class": "org.postgresql.Driver",
         "hibernate.connection.url": "jdbc:postgresql://ec2-50-19-219-148.compute-1.amazonaws.com:5432/dev6l6hq3o1e5d?user=sifdnhpornprnt&password=SxYAyT4m_jcyr1HLDlLUUhJZXf&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory",
         "hibernate.connection.username": "sifdnhpornprnt",
-        "hibernate.connection.password": "SxYAyT4m_jcyr1HLDlLUUhJZXf";
-        "websocket.url":"https://auction-realtimeservice.herokuapp.com/";
+        "hibernate.connection.password": "SxYAyT4m_jcyr1HLDlLUUhJZXf",
+        "websocket.url":"https://auction-realtimeservice.herokuapp.com/",
+        "restapis.url": "https://auction-rest.herokuapp.com/auction_rest/resources"
     }
 
 }

@@ -8,6 +8,7 @@ public class AuctionDaoData {
         auction.setChannel("rolex");
         auction.setIsLive(false);
         auction.setHighestBid(0.0);
+        auction.setItemId((long)1);
         return auction;
     }
 }

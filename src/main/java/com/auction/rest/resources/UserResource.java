@@ -2,6 +2,10 @@ package com.auction.rest.resources;
 
 
 
+import com.auction.rest.dao.impl.user.UserDaoService;
+import com.auction.rest.dao.utils.DaoUtils;
+import com.auction.rest.model.Id;
+import com.auction.rest.model.Item;
 import com.auction.rest.model.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,8 +31,7 @@ public class UserResource  {
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "An array of users", response = User.class, responseContainer = "List"),
         @ApiResponse(code = 200, message = "Unexpected error", response = User.class, responseContainer = "List") })
-    public Response userGet(
-        )
+    public Response userGet()
     throws NotFoundException {
         return null;
     }
@@ -41,10 +44,11 @@ public class UserResource  {
         @ApiResponse(code = 200, message = "user belongs to the id", response = User.class),
         @ApiResponse(code = 200, message = "Unexpected error", response = User.class) })
     public Response userIdGet(
-        @ApiParam(value = "id of the user to be retrieved",required=true) @PathParam("id") Long id
-        )
+        @ApiParam(value = "id of the user to be retrieved",required=true) @PathParam("id") Long id)
     throws NotFoundException {
-        return null;
+        UserDaoService userDaoService = DaoUtils.getUserService();
+        User user = userDaoService.getUser(id);
+        return Response.ok().entity(user).build();
     }
     @POST
 
@@ -54,9 +58,10 @@ public class UserResource  {
     @ApiResponses(value = {
         @ApiResponse(code = 201, message = "User object", response = User.class),
         @ApiResponse(code = 200, message = "Unexpected error", response = User.class) })
-    public Response userPost(
-        )
+    public Response userPost(@ApiParam(value = "User to add" ,required=true) User user)
     throws NotFoundException {
-        return null;
+        UserDaoService userDaoService = DaoUtils.getUserService();
+        Long id = userDaoService.addUser(user);
+        return Response.ok().entity(new Id(id)).build();
     }
 }
