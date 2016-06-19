@@ -28,7 +28,7 @@ public class UserResource  {
 
 
     @Produces({ "application/json" })
-    @ApiOperation(value = "users list", notes = "", response = User.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "users list", notes = "", response = User.class, responseContainer = "List", tags={ "/user" })
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "An array of users", response = User.class, responseContainer = "List"),
         @ApiResponse(code = 200, message = "Unexpected error", response = User.class, responseContainer = "List") })
@@ -41,7 +41,7 @@ public class UserResource  {
     @Path("/{id}")
 
     @Produces({ "application/json" })
-    @ApiOperation(value = "Gets the details of the User", notes = "", response = User.class, tags={  })
+    @ApiOperation(value = "Gets the details of the User", notes = "", response = User.class, tags={ "/user" })
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "user belongs to the id", response = User.class),
         @ApiResponse(code = 200, message = "Unexpected error", response = User.class) })
@@ -56,7 +56,7 @@ public class UserResource  {
 
 
     @Produces({ "application/json" })
-    @ApiOperation(value = "Create a new User", notes = "", response = User.class, tags={  })
+    @ApiOperation(value = "Create a new User", notes = "", response = User.class, tags={ "/user" })
     @ApiResponses(value = {
         @ApiResponse(code = 201, message = "User object", response = User.class),
         @ApiResponse(code = 200, message = "Unexpected error", response = User.class) })

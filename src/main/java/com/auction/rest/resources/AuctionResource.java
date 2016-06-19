@@ -33,7 +33,7 @@ public class AuctionResource  {
     @Path("/{id}/bids")
 
     @Produces({ "application/json" })
-    @ApiOperation(value = "Gets all the bids of the Auction", notes = "", response = Bid.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "Gets all the bids of the Auction", notes = "", response = Bid.class, responseContainer = "List", tags={ "/auction"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "user belongs to the id", response = Bid.class, responseContainer = "List"),
             @ApiResponse(code = 200, message = "Unexpected error", response = Bid.class, responseContainer = "List") })
@@ -47,7 +47,7 @@ public class AuctionResource  {
     @Path("/{id}")
 
     @Produces({ "application/json" })
-    @ApiOperation(value = "Gets the details of the Auction", notes = "", response = Auction.class, tags={  })
+    @ApiOperation(value = "Gets the details of the Auction", notes = "", response = Auction.class, tags={ "/auction"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "auction belongs to the id", response = Auction.class),
             @ApiResponse(code = 200, message = "Unexpected error", response = Auction.class) })
@@ -63,7 +63,7 @@ public class AuctionResource  {
     @Path("/{id}/golive")
 
     @Produces({ "application/json" })
-    @ApiOperation(value = "Makes the Auction go Live", notes = "", response = Auction.class, tags={  })
+    @ApiOperation(value = "Makes the Auction go Live", notes = "", response = Auction.class,  tags={ "/auction"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "went live ", response = Auction.class),
             @ApiResponse(code = 200, message = "Unexpected error", response = Auction.class) })
@@ -77,7 +77,7 @@ public class AuctionResource  {
 
     @GET
     @Produces({ "application/json" })
-    @ApiOperation(value = "Auctions", notes = "Returns the list of available Auctions ", response = Auction.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "Auctions", notes = "Returns the list of available Auctions ", response = Auction.class, responseContainer = "List", tags={ "/auction"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "An array of Auctions", response = Auction.class, responseContainer = "List"),
             @ApiResponse(code = 200, message = "Unexpected error", response = Auction.class, responseContainer = "List") })
@@ -88,7 +88,7 @@ public class AuctionResource  {
 
     @POST
     @Produces({ "application/json" })
-    @ApiOperation(value = "", notes = "Creates a new Auction", response = Auction.class, tags={  })
+    @ApiOperation(value = "", notes = "Creates a new Auction", response = Auction.class, tags={ "/auction"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Auction object", response = Auction.class),
             @ApiResponse(code = 200, message = "unexpected error", response = Auction.class) })

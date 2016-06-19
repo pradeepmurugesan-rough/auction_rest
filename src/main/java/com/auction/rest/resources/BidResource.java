@@ -30,7 +30,7 @@ public class BidResource  {
 
     @POST
     @Produces({ "application/json" })
-    @ApiOperation(value = "Create a new Bid", notes = "", response = Bid.class, tags={  })
+    @ApiOperation(value = "Create a new Bid", notes = "", response = Bid.class, tags={ "/bid" })
     @ApiResponses(value = {
         @ApiResponse(code = 201, message = "Bid object", response = Bid.class),
         @ApiResponse(code = 200, message = "Unexpected error", response = Bid.class) }
@@ -47,7 +47,7 @@ public class BidResource  {
     @Path("/{id}")
 
     @Produces({ "application/json" })
-    @ApiOperation(value = "Gets the details of the Bid", notes = "", response = Bid.class, tags={  })
+    @ApiOperation(value = "Gets the details of the Bid", notes = "", response = Bid.class, tags={ "/bid" })
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "user belongs to the id", response = Bid.class),
             @ApiResponse(code = 200, message = "Unexpected error", response = Bid.class) })

@@ -16,13 +16,12 @@ import javax.ws.rs.*;
 
 @Produces({ "application/json" })
 @Api(description = "the item API")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-06-15T16:19:02.945Z")
 public class ItemResource  {
 
 
     @GET
     @Produces({ "application/json" })
-    @ApiOperation(value = "Details of the Item", notes = "", response = Item.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "Details of the Item", notes = "", response = Item.class, responseContainer = "List", tags={ "/item" })
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "An array of items", response = Item.class, responseContainer = "List"),
         @ApiResponse(code = 200, message = "Unexpected error", response = Item.class, responseContainer = "List") })
@@ -34,7 +33,7 @@ public class ItemResource  {
     @Path("/{id}")
 
     @Produces({ "application/json" })
-    @ApiOperation(value = "Gets the details of the Item", notes = "", response = Item.class, tags={  })
+    @ApiOperation(value = "Gets the details of the Item", notes = "", response = Item.class, tags={ "/item" })
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "item belongs to the id", response = Item.class),
         @ApiResponse(code = 200, message = "Unexpected error", response = Item.class) })
@@ -48,7 +47,7 @@ public class ItemResource  {
 
     @POST
     @Produces({ "application/json" })
-    @ApiOperation(value = "Create a new Item", notes = "", response = Item.class, tags={  })
+    @ApiOperation(value = "Create a new Item", notes = "", response = Item.class, tags={ "/item" })
     @ApiResponses(value = {
         @ApiResponse(code = 201, message = "Item object", response = Item.class),
         @ApiResponse(code = 200, message = "Unexpected error", response = Item.class) })
