@@ -29,7 +29,7 @@
         <init-param>
             <param-name>swagger.api.basepath</param-name>
 
-            <param-value>/apicloud-core-1.0/resources</param-value>
+            <param-value>/auction_rest/resources</param-value>
 
         </init-param>
         <load-on-startup>2</load-on-startup>
