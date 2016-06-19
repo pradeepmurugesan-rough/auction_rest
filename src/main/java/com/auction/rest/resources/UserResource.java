@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiResponses;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.*;
+import java.util.List;
 
 @Path("/user")
 
@@ -31,9 +32,10 @@ public class UserResource  {
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "An array of users", response = User.class, responseContainer = "List"),
         @ApiResponse(code = 200, message = "Unexpected error", response = User.class, responseContainer = "List") })
-    public Response userGet()
-    throws NotFoundException {
-        return null;
+    public Response userGet() throws NotFoundException {
+        UserDaoService userDaoService = DaoUtils.getUserService();
+        List<User> users = userDaoService.getAllUsers();
+        return Response.ok().entity(users).build();
     }
     @GET
     @Path("/{id}")

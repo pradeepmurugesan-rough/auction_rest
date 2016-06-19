@@ -2,6 +2,8 @@ package com.auction.rest.dao.impl.user;
 
 import com.auction.rest.model.User;
 
+import java.util.List;
+
 public class UserDaoService {
     private UserDao userDao;
 
@@ -21,5 +23,12 @@ public class UserDaoService {
         User user = this.userDao.getUser(id);
         this.userDao.closeCurrentSession();
         return user;
+    }
+
+    public List<User> getAllUsers() {
+        this.userDao.openCurrentSession();
+        List<User> users = this.userDao.getUsers();
+        this.userDao.closeCurrentSession();
+        return users;
     }
 }

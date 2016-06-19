@@ -19,6 +19,7 @@ public class DaoConstants {
 
         public class User {
             public static final String GET_USER_BY_ID = "FROM User where id = :id";
+            public static final String GET_ALL_USERS = "FROM User";
         }
     }
 
