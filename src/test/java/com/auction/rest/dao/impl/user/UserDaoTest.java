@@ -1,5 +1,6 @@
 package com.auction.rest.dao.impl.user;
 
+import com.auction.rest.exception.AuctionException;
 import com.auction.rest.model.User;
 import com.auction.rest.testutils.HibernateTestConfig;
 import com.auction.rest.testutils.data.user.UserDaoData;
@@ -13,7 +14,7 @@ public class UserDaoTest {
     private static User user;
 
     @BeforeClass
-    public static void setUpDb() {
+    public static void setUpDb() throws AuctionException {
         factory = new HibernateTestConfig().getUnitTestSessionFactory();
         user = UserDaoData.getUser();
         UserDao userDao = new UserDao(factory);
@@ -23,7 +24,7 @@ public class UserDaoTest {
     }
 
     @Test
-    public void testInsert() {
+    public void testInsert() throws AuctionException {
         user = UserDaoData.getUser();
         UserDao userDao = new UserDao(factory);
         userDao.openCurrentSessionwithTransaction();
@@ -35,7 +36,7 @@ public class UserDaoTest {
     }
 
     @Test
-    public void testRetrive() {
+    public void testRetrive() throws AuctionException {
         UserDao userDao = new UserDao(factory);
         userDao.openCurrentSessionwithTransaction();
         User inserteduser = userDao.getUser(Long.valueOf(1));

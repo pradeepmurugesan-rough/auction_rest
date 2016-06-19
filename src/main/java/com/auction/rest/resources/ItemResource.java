@@ -2,6 +2,7 @@ package com.auction.rest.resources;
 
 import com.auction.rest.dao.impl.item.ItemDaoService;
 import com.auction.rest.dao.utils.DaoUtils;
+import com.auction.rest.exception.AuctionException;
 import com.auction.rest.impl.ItemImpl;
 import com.auction.rest.model.Item;
 import io.swagger.annotations.Api;
@@ -24,7 +25,8 @@ public class ItemResource  {
     @ApiOperation(value = "Details of the Item", notes = "", response = Item.class, responseContainer = "List", tags={ "/item" })
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "An array of items", response = Item.class, responseContainer = "List"),
-        @ApiResponse(code = 200, message = "Unexpected error", response = Item.class, responseContainer = "List") })
+        @ApiResponse(code = 500, message = "Unexpected error", response = Error.class, responseContainer = "List"),
+        @ApiResponse(code = 400, message = "Bad Request", response = Error.class, responseContainer = "List")})
     public Response getItems()
     throws NotFoundException {
         return null;
@@ -36,10 +38,11 @@ public class ItemResource  {
     @ApiOperation(value = "Gets the details of the Item", notes = "", response = Item.class, tags={ "/item" })
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "item belongs to the id", response = Item.class),
-        @ApiResponse(code = 200, message = "Unexpected error", response = Item.class) })
+        @ApiResponse(code = 500, message = "Unexpected error", response = Error.class, responseContainer = "List"),
+        @ApiResponse(code = 400, message = "Bad Request", response = Error.class, responseContainer = "List")})
     public Response getItem(
         @ApiParam(value = "id of the item to be retrieved",required=true) @PathParam("id") Long id)
-    throws NotFoundException {
+            throws AuctionException {
         ItemDaoService itemDaoService = DaoUtils.getItemService();
         ItemImpl impl = new ItemImpl(itemDaoService);
         return Response.ok().entity(impl.getItem(id)).build();
@@ -50,9 +53,10 @@ public class ItemResource  {
     @ApiOperation(value = "Create a new Item", notes = "", response = Item.class, tags={ "/item" })
     @ApiResponses(value = {
         @ApiResponse(code = 201, message = "Item object", response = Item.class),
-        @ApiResponse(code = 200, message = "Unexpected error", response = Item.class) })
+        @ApiResponse(code = 500, message = "Unexpected error", response = Error.class, responseContainer = "List"),
+        @ApiResponse(code = 400, message = "Bad Request", response = Error.class, responseContainer = "List")})
     public Response addItem(@ApiParam(value = "Item to add" ,required=true) Item item)
-    throws NotFoundException {
+            throws AuctionException {
         ItemDaoService itemDaoService = DaoUtils.getItemService();
         ItemImpl impl = new ItemImpl(itemDaoService);
         return Response.ok().entity(impl.addItem(item)).build();

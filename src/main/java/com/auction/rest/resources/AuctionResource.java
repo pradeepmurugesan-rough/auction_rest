@@ -3,6 +3,7 @@ package com.auction.rest.resources;
 
 import com.auction.rest.dao.impl.auction.AuctionDaoService;
 import com.auction.rest.dao.utils.DaoUtils;
+import com.auction.rest.exception.AuctionException;
 import com.auction.rest.impl.AuctionImpl;
 import com.auction.rest.model.Auction;
 import com.auction.rest.model.Bid;
@@ -37,7 +38,7 @@ public class AuctionResource  {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "user belongs to the id", response = Bid.class, responseContainer = "List"),
             @ApiResponse(code = 200, message = "Unexpected error", response = Bid.class, responseContainer = "List") })
-    public Response auctionIdBidsGet(
+    public Response getBidsByAictionId(
             @ApiParam(value = "identifier of the auction",required=true) @PathParam("id") Long id)
             throws NotFoundException {
         return Response.ok().entity("This is a magic").build();
@@ -51,9 +52,9 @@ public class AuctionResource  {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "auction belongs to the id", response = Auction.class),
             @ApiResponse(code = 200, message = "Unexpected error", response = Auction.class) })
-    public Response auctionIdGet(
+    public Response getAuction(
             @ApiParam(value = "id of the auction to be retrieved",required=true) @PathParam("id") Long id)
-            throws NotFoundException {
+            throws AuctionException {
         AuctionDaoService auctionDaoService = DaoUtils.getAuctionService();
         AuctionImpl auctionImpl = new AuctionImpl(auctionDaoService);
         return Response.ok().entity(auctionImpl.getAuction(id)).build();
@@ -69,7 +70,7 @@ public class AuctionResource  {
             @ApiResponse(code = 200, message = "Unexpected error", response = Auction.class) })
     public Response goLive(
             @ApiParam(value = "id of the auction to be made live",required=true) @PathParam("id") @CanGoLive Long id)
-            throws NotFoundException {
+            throws AuctionException {
         AuctionDaoService auctionDaoService = DaoUtils.getAuctionService();
         AuctionImpl auctionImpl = new AuctionImpl(auctionDaoService);
         return Response.ok().entity(auctionImpl.makeAuctionLive(id)).build();
@@ -92,8 +93,8 @@ public class AuctionResource  {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Auction object", response = Auction.class),
             @ApiResponse(code = 200, message = "unexpected error", response = Auction.class) })
-    public Response auctionsPost(
-            @ApiParam(value = "Auction to add" ,required=true) Auction auction) throws NotFoundException {
+    public Response addAuction(
+            @ApiParam(value = "Auction to add" ,required=true) Auction auction) throws AuctionException {
         AuctionDaoService auctionDaoService = DaoUtils.getAuctionService();
         AuctionImpl auctionImpl = new AuctionImpl(auctionDaoService);
         return Response.ok().entity(auctionImpl.addAuction(auction)).build();

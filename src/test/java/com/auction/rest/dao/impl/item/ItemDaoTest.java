@@ -1,5 +1,6 @@
 package com.auction.rest.dao.impl.item;
 
+import com.auction.rest.exception.AuctionException;
 import com.auction.rest.model.Item;
 import com.auction.rest.testutils.HibernateTestConfig;
 import com.auction.rest.testutils.data.item.ItemDaoData;
@@ -13,7 +14,7 @@ public class ItemDaoTest {
     private static Item item;
 
     @BeforeClass
-    public static void setUpDb() {
+    public static void setUpDb() throws AuctionException {
         factory = new HibernateTestConfig().getUnitTestSessionFactory();
         item = ItemDaoData.getItem();
         ItemDao itemDao = new ItemDao(factory);
@@ -23,7 +24,7 @@ public class ItemDaoTest {
     }
 
     @Test
-    public void testInsert() {
+    public void testInsert() throws AuctionException {
         item = ItemDaoData.getItem();
         ItemDao itemDao = new ItemDao(factory);
         itemDao.openCurrentSessionwithTransaction();
@@ -35,7 +36,7 @@ public class ItemDaoTest {
     }
 
     @Test
-    public void testRetrive() {
+    public void testRetrive() throws AuctionException {
         ItemDao itemDao = new ItemDao(factory);
         itemDao.openCurrentSessionwithTransaction();
         Item insertedItem = itemDao.getItem(Long.valueOf(1));

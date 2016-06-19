@@ -1,5 +1,6 @@
 package com.auction.rest.dao.impl.auction;
 
+import com.auction.rest.exception.AuctionException;
 import com.auction.rest.model.Auction;
 import com.auction.rest.testutils.HibernateTestConfig;
 import com.auction.rest.testutils.data.auction.AuctionDaoData;
@@ -17,7 +18,7 @@ public class AuctionDaoServiceTest {
     private static Long auction_id;
 
     @BeforeClass
-    public static void SetUp() {
+    public static void SetUp() throws AuctionException {
         auction_id = Long.valueOf(1);
         auction = AuctionDaoData.getAuction();
         factory = new HibernateTestConfig().getUnitTestSessionFactory();
@@ -27,7 +28,7 @@ public class AuctionDaoServiceTest {
     }
 
     @Test
-    public void testAddAuction() {
+    public void testAddAuction() throws AuctionException {
         Long auctionId = ++auction_id;
         auction = AuctionDaoData.getAuction();
         auction.setId(auctionId);

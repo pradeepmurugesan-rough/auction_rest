@@ -1,16 +1,21 @@
 package com.auction.rest.config;
 
+import com.auction.rest.exception.AuctionException;
 import com.auction.rest.util.Constants;
-import com.auction.rest.util.JsonConvertor;
+import com.auction.rest.util.JsonConverter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.io.IOUtils;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 public class Environment {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Environment.class);
 
     private String dialect;
     private String driverClass;
@@ -88,16 +93,17 @@ public class Environment {
 
     public static Environment getInstance() {
         String environmentName = System.getProperty(Constants.ENVIRONMENT_NAME);
+        LOGGER.info("Loading the values for the environment" +  environmentName);
         if (environment == null) {
             try {
                 InputStream stream = Environment.class.getClassLoader().getResourceAsStream(Constants.ENV_FILE);
                 String envJson = IOUtils.toString(stream);
                 JSONObject environmentObj = new JSONObject(envJson);
-                environment = JsonConvertor.jsonToObject(
+                environment = JsonConverter.jsonToObject(
                                 environmentObj.getJSONObject(environmentName).toString(),
                                 Environment.class);
-            } catch (IOException | JSONException e) {
-                e.printStackTrace();
+            } catch (IOException | JSONException | AuctionException e) {
+                LOGGER.error("Error occured while retrieving the environment values", e);
             }
         }
         return environment;

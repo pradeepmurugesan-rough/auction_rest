@@ -1,5 +1,6 @@
 package com.auction.rest.dao.impl.bid;
 
+import com.auction.rest.exception.AuctionException;
 import com.auction.rest.model.Auction;
 import com.auction.rest.model.Bid;
 import com.auction.rest.testutils.HibernateTestConfig;
@@ -19,7 +20,7 @@ public class BidDaoServiceTest {
     private static Bid bid;
 
     @BeforeClass
-    public static void SetUp() {
+    public static void SetUp() throws AuctionException {
         bid = BidDaoData.getBid();
         factory = new HibernateTestConfig().getUnitTestSessionFactory();
         bidDao = new BidDao(factory);
@@ -31,7 +32,7 @@ public class BidDaoServiceTest {
     }
 
     @Test
-    public void testAddBid() {
+    public void testAddBid() throws AuctionException {
         bid = BidDaoData.getBid();
         bidDaoService.addBid(bid);
         Bid insertedBid = bidDaoService.getBid(bid.getId());
@@ -40,14 +41,14 @@ public class BidDaoServiceTest {
     }
 
     @Test
-    public void testRetrive() {
+    public void testRetrive() throws AuctionException {
         Bid bid = bidDaoService.getBid((long)1);
         Assert.assertNotNull(bid);
         Assert.assertTrue(bid.getId() == 1);
     }
 
     @Test
-    public void testRetriveBidsForAuction() {
+    public void testRetriveBidsForAuction() throws AuctionException {
 
         List<Bid> bids = bidDaoService.getBidsForAuction((long)0);
         Assert.assertEquals(bids.size(), 5);
@@ -55,7 +56,7 @@ public class BidDaoServiceTest {
     }
 
     @Test
-    public void testRetriveBidsForAuctionAndUser() {
+    public void testRetriveBidsForAuctionAndUser() throws AuctionException {
         List<Bid> bids = bidDaoService.getBidsForUserAndAuction((long)0, (long)1);
         Assert.assertEquals(bids.size(), 5);
     }

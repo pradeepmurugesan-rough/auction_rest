@@ -10,6 +10,10 @@ public class Constants {
         public static final String HIBERNATE_CONN_PWD = "hibernate.connection.password";
     }
 
+    public class ExceptionMessage {
+        public static final String  JSON_CONVERSION_ERROR = "Error occurred while converting the Json Object";
+    }
+
     public static final String ENV_FILE = "environments.json";
     public static final String ENVIRONMENT_NAME = "environmentName";
     public static final String VALIDATION_ERROR_MESSAGE = "Improper input";
