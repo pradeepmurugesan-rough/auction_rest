@@ -37,6 +37,13 @@ public class BidDaoService {
         return bids;
     }
 
+    public Bid getHighestBidOfAuction(Long auctionId, Double price) throws AuctionException {
+        bidDao.openCurrentSession();
+        Bid bid = bidDao.getHighestBidOfAuction(auctionId, price);
+        bidDao.closeCurrentSession();
+        return bid;
+    }
+
     public List<Bid> getBidsForUserAndAuction(Long auctionId, Long userId) throws AuctionException {
         bidDao.openCurrentSession();
         List<Bid> bids = bidDao.getBidsOfUserAndAuction(auctionId, userId);

@@ -2,9 +2,11 @@ package com.auction.rest.dao.impl.bid;
 
 import static com.auction.rest.dao.utils.DaoConstants.Query.Bid.GET_BIDS_BY_AUCTION_ID;
 import static com.auction.rest.dao.utils.DaoConstants.Query.Bid.GET_BIDS_BY_AUCTION_ID_AND_USER_ID;
+import static com.auction.rest.dao.utils.DaoConstants.Query.Bid.GET_BID_BY_AUCTION_ID_AND_PRICE;
 import static com.auction.rest.dao.utils.DaoConstants.Query.Bid.GET_BID_BY_ID;
 import static com.auction.rest.dao.utils.DaoConstants.QueryParameters.AUCTION_ID;
 import static com.auction.rest.dao.utils.DaoConstants.QueryParameters.ID;
+import static com.auction.rest.dao.utils.DaoConstants.QueryParameters.PRICE;
 import static com.auction.rest.dao.utils.DaoConstants.QueryParameters.USER_ID;
 
 import com.auction.rest.dao.AbstractDao;
@@ -58,6 +60,19 @@ public class BidDao extends AbstractDao {
             throw new AuctionException(e.getMessage());
         }
     }
+
+    public Bid getHighestBidOfAuction(Long auctionId, Double price) throws AuctionException {
+        try {
+            Query query = getCurrentSession().createQuery(GET_BID_BY_AUCTION_ID_AND_PRICE);
+            query.setParameter(AUCTION_ID, auctionId);
+            query.setParameter(PRICE, price);
+            return (Bid) query.uniqueResult();
+        } catch (Exception e) {
+            LOGGER.error("Exception While retrieving bids of Auction " + auctionId, e);
+            throw new AuctionException(e.getMessage());
+        }
+    }
+
 
     public List<Bid> getBidsOfUserAndAuction(Long auctionId, Long userId) throws AuctionException {
         try {

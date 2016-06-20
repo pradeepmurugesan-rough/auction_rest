@@ -42,6 +42,14 @@ public class BidImpl {
         bid.setUser(user);
         return bid;
     }
+    
+    public Bid getHighestBidForAuction(Long auctionId, Double price) throws AuctionException {
+        Bid bid = this.bidDaoService.getHighestBidOfAuction(auctionId, price);
+        UserDaoService userDaoService = DaoUtils.getUserService();
+        User user = userDaoService.getUser(bid.getUserId());
+        bid.setUser(user);
+        return bid;
+    }
 
     public List<Bid> getBidsForAucion(Long auctionId) throws AuctionException {
         List<Bid> bids = this.bidDaoService.getBidsForAuction(auctionId);

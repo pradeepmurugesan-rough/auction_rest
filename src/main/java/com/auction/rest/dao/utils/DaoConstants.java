@@ -9,6 +9,8 @@ public class DaoConstants {
         public class Bid {
             public static final String GET_BID_BY_ID = "FROM Bid where id = :id";
             public static final String GET_BIDS_BY_AUCTION_ID = "FROM Bid where auctionId = :auctionId";
+            public static final String GET_BID_BY_AUCTION_ID_AND_PRICE =
+                    "FROM Bid where auctionId = :auctionId AND price = :price";
             public static final String GET_BIDS_BY_AUCTION_ID_AND_USER_ID =
                     "FROM Bid where auctionId = :auctionId AND userId = :userId";
         }
@@ -26,6 +28,7 @@ public class DaoConstants {
     public class QueryParameters {
         public static final String ID = "id";
         public static final String AUCTION_ID = "auctionId";
+        public static final String PRICE = "price";
         public static final String USER_ID = "userId";
 
     }

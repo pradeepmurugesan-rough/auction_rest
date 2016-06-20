@@ -39,6 +39,9 @@ public class Auction   {
     @Transient
     private Item item;
 
+    @Transient
+    private Bid latestBid;
+
     public Auction id(Long id) {
         this.id = id;
         return this;
@@ -129,6 +132,16 @@ public class Auction   {
 
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    @ApiModelProperty(value = "item of the auction")
+    @JsonProperty("latestBid")
+    public Bid getLatestBid() {
+        return latestBid;
+    }
+
+    public void setLatestBid(Bid latestBid) {
+        this.latestBid = latestBid;
     }
 }
 
