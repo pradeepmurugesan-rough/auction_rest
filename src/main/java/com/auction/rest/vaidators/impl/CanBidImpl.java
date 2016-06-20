@@ -36,7 +36,7 @@ public class CanBidImpl implements ConstraintValidator<CanBid, Bid> {
         Double highestBid = auction.getHighestBid();
         if (isLive == null || !isLive ) {
             valid = false;
-        } else if (highestBid != null && bid.getPrice() < highestBid) {
+        } else if (highestBid != null && bid.getPrice() <= highestBid) {
             valid = false;
             String errorMessage = "Sorry you are bit late on the bid for the price " + bid.getPrice();
             context.disableDefaultConstraintViolation();
